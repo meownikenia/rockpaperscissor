@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <title>Rock Paper Scissor Game</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/sign-in/">
+
+    <!-- Bootstrap core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="fa/css/font-awesome.min.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+		user-select: none;
+      }
+h1 {text-align: center;
+}
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+		}
+      }
+	  body {
+	background-image:url("https://res.cloudinary.com/mianikenia/image/upload/v1600670731/assets/background-blur_dtgle6.jpg"); 
+    background-repeat:no-repeat; background-position:center;
+    background-size:cover; padding:10px;
+}
+	  img{width:100px;height:100px;}
+	  .img1{width:50px;height:50px;}
+	  table th,td{text-align:center;}
+    </style>
+    <!-- Custom styles for this template -->
+  </head>
+   <body class="text-center">
+   <main role="main" class="container">
+       <div class="row">
+
+           <div class="col-md-6">
+                <div class="starter-template">
+                    <h1>Rock Paper Scissor</h1>
+                    <br>
+                    <center>
+                    <table width="100%">
+                    <thead>
+                        <tr>
+                            <th>{{ name }}</th>
+                            <th></th>
+                            <th>Computer</th>	
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                    
+                        <tr><td><br></td></tr>
+                        <!--Disini juga ditambahin id buat mengidentifikasi mana gambar buat kita dan lawan. yang dikasih identitasnya adalah td nya.-->
+                        <tr>
+                            <td id="batu_saya"><img id="Batu" value="batu" onClick="ambil_nilai(this.id)" src="https://res.cloudinary.com/mianikenia/image/upload/v1600656346/assets/batu_ua77pr.png"></td>
+                            <td></td>
+                            <td id="batu_lawan"><img value="batu_lawan" src="https://res.cloudinary.com/mianikenia/image/upload/v1600656346/assets/batu_ua77pr.png"></td>
+                            
+                        </tr>
+                        <tr>
+                            <td id="gunting_saya"><img id="Gunting" onClick="ambil_nilai(this.id)" src="https://res.cloudinary.com/mianikenia/image/upload/v1600656348/assets/gunting_fcltxa.png"></td>
+                            <!--td><img id="hasil_gambar"></td-->
+                            <td><button id="button_hasil"></button></td>
+                            <td id="gunting_lawan"><img src="https://res.cloudinary.com/mianikenia/image/upload/v1600656348/assets/gunting_fcltxa.png"></td>
+                        </tr>
+                        <tr>
+                            <td id="kertas_saya"><img id="Kertas" onClick="ambil_nilai(this.id)" src="https://res.cloudinary.com/mianikenia/image/upload/v1600656346/assets/kertas_vstgai.png"></td>
+                            <td></td>
+                            <td id="kertas_lawan"><img src="https://res.cloudinary.com/mianikenia/image/upload/v1600656346/assets/kertas_vstgai.png"></td>
+                        </tr>
+                        <tr><td><br></td></tr>
+                        <tr>
+                            <td><a class="btn btn-block btn-success" href="/home"><i class="fa fa-home fa-3x"></i></a></td>
+                            <td><img id="refresh" class="img1" onClick="refresh(this.id)" src="assets/refresh.png"></td>
+                            <td><a class="btn btn-block btn-danger" href="/post_login"><i class="fa fa-exchange fa-3x" aria-hidden="true"></i></a></td>
+                        </tr>
+                    </tbody>
+                    </table>
+                    </center>
+                </div>
+           </div> 
+		   <div class="col-md-6">
+			   	<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Main</th>
+							<th scope="col">Menang</th>
+							<th scope="col">Kalah</th>
+							<th scope="col">Seri</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row">1</th>
+							<td>10</td>
+							<td>5</td>
+							<td>3</td>
+							<td>2</td>
+						</tr>
+					</tbody>
+				</table>
+		   </div>
+       </div>
+	  
+  </main>
+  <script>
+  //document.getElementById("hasil_gambar").src = "assets/VS.png";
+   document.getElementById("button_hasil").className = "btn btn-block btn-light";
+   document.getElementById('button_hasil').innerText = 'VS';
+	function ambil_nilai(clicked_id)
+	{
+		///////Ini Buat kondisi ngeblock yang kita pilih. kita ngasih warna berdasarkan id unik yang diatas. Kalo mau ganti warnanya tinggal ganti di yang setelah = aja "grey"
+		//////codingan untuk yang = "" supaya warna yang selain kita pilih ngga nyangkut
+		if(clicked_id==='Batu')
+		{
+			document.getElementById('batu_saya').style.backgroundColor = "grey";
+			document.getElementById('gunting_saya').style.backgroundColor = "";
+			document.getElementById('kertas_saya').style.backgroundColor = "";
+			
+		}
+		else if(clicked_id==='Gunting')
+		{
+			document.getElementById('batu_saya').style.backgroundColor = "";
+			document.getElementById('gunting_saya').style.backgroundColor = "grey";
+			document.getElementById('kertas_saya').style.backgroundColor = "";
+		}
+		else if(clicked_id==='Kertas')
+		{
+			document.getElementById('batu_saya').style.backgroundColor = "";
+			document.getElementById('gunting_saya').style.backgroundColor = "";
+			document.getElementById('kertas_saya').style.backgroundColor = "grey";
+		}
+				
+		var pilihan_bot = Array(1,2,3);
+		
+		var random = pilihan_bot[Math.floor(Math.random() * pilihan_bot.length)];
+		
+		if(random===1)
+		{
+			var descp = "Batu";
+			///////ini kondisi buat ngeblock yang randomnya lawan, cara kerjanya sama dengan yang diatas. 
+			document.getElementById('batu_lawan').style.backgroundColor = "grey";
+			document.getElementById('gunting_lawan').style.backgroundColor = "";
+			document.getElementById('kertas_lawan').style.backgroundColor = "";
+		}
+		else if(random===2)
+		{
+			var descp = "Gunting";
+			document.getElementById('batu_lawan').style.backgroundColor = "";
+			document.getElementById('gunting_lawan').style.backgroundColor = "grey";
+			document.getElementById('kertas_lawan').style.backgroundColor = "";
+		}
+		else
+		{
+			var descp = "Kertas";
+			document.getElementById('batu_lawan').style.backgroundColor = "";
+			document.getElementById('gunting_lawan').style.backgroundColor = "";
+			document.getElementById('kertas_lawan').style.backgroundColor = "grey";
+			
+		}
+		
+		if(clicked_id==='Batu' && descp==='Batu')
+		{
+			var hasil="Seri";
+		}
+		else if (clicked_id==='Batu' && descp==='Gunting')
+		{
+			var hasil="Menang";
+		}
+		else if (clicked_id==='Batu' && descp==='Kertas')
+		{
+			var hasil="Kalah";
+		}
+		else if (clicked_id==='Gunting' && descp==='Batu')
+		{
+			var hasil="Kalah";
+		}
+		else if (clicked_id==='Gunting' && descp==='Gunting')
+		{
+			var hasil="Seri";
+		}
+		else if (clicked_id==='Gunting' && descp==='Kertas')
+		{
+			var hasil="Menang";
+		}
+		else if (clicked_id==='Kertas' && descp==='Batu')
+		{
+			var hasil="Menang";
+		}
+		else if (clicked_id==='Kertas' && descp==='Gunting')
+		{
+			var hasil="Kalah";
+		}
+		else if (clicked_id==='Kertas' && descp==='Kertas')
+		{
+			var hasil="Seri";
+		}
+		
+		
+		alert(clicked_id+' VS '+descp+'\r\nAnda '+hasil);
+		
+		
+		if(hasil==='Kalah')
+		{
+			//document.getElementById("hasil_gambar").src = "assets/kalah.png";
+            document.getElementById("button_hasil").className = "btn btn-sm btn-danger";
+            document.getElementById('button_hasil').innerText = 'Anda Kalah';
+		}
+		else if(hasil==='Menang')
+		{
+			//document.getElementById("hasil_gambar").src = "assets/menang.png";
+            document.getElementById("button_hasil").className = "btn btn-sm btn-success";
+            document.getElementById('button_hasil').innerText = 'Anda Menang';
+		}
+		else if(hasil==='Seri')
+		{
+			//document.getElementById("hasil_gambar").src = "assets/seri.png";
+            document.getElementById("button_hasil").className = "btn btn-sm btn-warning";
+            document.getElementById('button_hasil').innerText = 'Seri';
+		}
+	}
+	
+	function refresh(clicked_id)
+	{
+		//document.getElementById("hasil_gambar").src = "assets/VS.png";
+        document.getElementById("button_hasil").className = "btn btn-block btn-light";
+        document.getElementById('button_hasil').innerText = 'VS';
+		
+		///ini buat ngosongin warna pas kita pilih mulai main dari awal
+		document.getElementById('batu_saya').style.backgroundColor = "";
+		document.getElementById('gunting_saya').style.backgroundColor = "";
+		document.getElementById('kertas_saya').style.backgroundColor = "";
+		document.getElementById('batu_lawan').style.backgroundColor = "";
+		document.getElementById('gunting_lawan').style.backgroundColor = "";
+		document.getElementById('kertas_lawan').style.backgroundColor = "";
+	}
+  </script>
+</body>
+</html>
